@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Liste des films et séries TV</title>
+    <style>
+    body {
+        background: black;
+        color: rgba(255,255,255,.73);
+        font-size: .95em;
+        font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",'Open Sans',sans-serif;
+        margin: 100;
+        padding: 0;
+        overflow: hidden;
+    }
+    #navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f1f1f1;
+        z-index: 999; /* Garantit que la barre de navigation est affichée au-dessus de l'iFrame */
+    }
+
+    #navbar a {
+        float: left;
+        display: block;
+        color: #333;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    #navbar a:hover {
+        background-color: #ddd;
+    }
+
+    #mainBlock {
+        position: fixed;
+        top: 58px; /* Hauteur de la barre de navigation + espace de 10 px */
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: none;
+        width: 100vw;
+        height: calc(100vh - 58px);
+        display: block;
+    }
+    </style>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+</head>
+<body>
+    <script>
+        function changeContent(url) {
+            document.getElementById("mainBlock").src = url;
+        }
+    </script>
+  <div id="navbar">
+    <a href="#" onclick="changeContent('movielist.html')">Films</a>
+    <a href="#" onclick="changeContent('tvshows.html')">Séries</a>
+  </div>
+  <iframe id="mainBlock" src="movielist.html"></iframe>
+</body>
+</html>
