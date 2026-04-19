@@ -47,6 +47,25 @@
             ${tvShow.plot}
         </p>
     </section>
+    <div class="cast-section">
+        <input type="checkbox" id="cast-toggle"/>
+        <label class="cast-toggle-label" for="cast-toggle" data-i18n="cast">Cast</label>
+        <div class="cast-grid">
+            ${foreach tvShow.actors actor}
+            <div class="actor-card">
+                <div class="actor-photo">
+                    ${if actor.thumbUrl}
+                    <img src="${actor.thumbUrl}"/>
+                    ${else}
+                    <img src="../nopicture.gif"/>
+                    ${end}
+                </div>
+                <p class="actor-name">${actor.name}</p>
+                ${if actor.role}<p class="actor-role">${actor.role}</p>${end}
+            </div>
+            ${end}
+        </div>
+    </div>
     <section>
         <div class="episodes">
             <div class="episodes wrapper">

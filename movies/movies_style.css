@@ -5,3 +5,4 @@
 .audioinfo:before {
     content: var(--i18n-audioinfo, "Audio format: ");
 }
+

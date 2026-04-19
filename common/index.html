@@ -138,7 +138,7 @@
         vi: 'flag_vi.png',
     };
 
-    function makeLangEntry(lang) {
+    function makeLangEntry(lang, withText) {
         const div = document.createElement('div');
         if (langFlags[lang]) {
             const img = document.createElement('img');
@@ -146,7 +146,9 @@
             img.alt = lang;
             div.appendChild(img);
         }
-        div.appendChild(document.createTextNode(lang.toUpperCase()));
+        if (withText !== false) {
+            div.appendChild(document.createTextNode(lang.toUpperCase()));
+        }
         return div;
     }
 
@@ -161,7 +163,7 @@
             setLanguage(lang);
             applyI18n(lang);
             current.innerHTML = '';
-            current.appendChild(makeLangEntry(lang));
+            current.appendChild(makeLangEntry(lang, false));
             options.style.display = 'none';
             iframe.contentWindow.postMessage({ type: 'pb-lang', lang: lang }, '*');
         }
@@ -175,7 +177,7 @@
             options.appendChild(item);
         });
 
-        current.appendChild(makeLangEntry(detectLanguage()));
+        current.appendChild(makeLangEntry(detectLanguage(), false));
 
         document.getElementById('lang-selector').addEventListener('click', function(e) {
             e.stopPropagation();
