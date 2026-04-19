@@ -16,7 +16,7 @@ template
 
 This template is a fork of Dark Template (don't know source)
 
-- translated into French
+- internationalised (EN, FR, ES) with browser language auto-detection
 - modified to be exported (by tinyMediaManager) in the same directory
   as the export of PBDarkTemplateTVShows without file name clash.
 - added an index file to switch from movies to TV series and back.
