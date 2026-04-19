@@ -124,11 +124,14 @@ zip archives.
 
 ### Available targets
 
-| Command        | Description                   |
-|----------------|-------------------------------|
-| `make`         | Show available targets        |
-| `make all`     | Build both templates          |
-| `make clean`   | Remove the `build/` directory |
+| Command          | Description                                          |
+|------------------|------------------------------------------------------|
+| `make`           | Show available targets                               |
+| `make all`       | Equivalent to `movies` + `tvshows` + `flags`         |
+| `make movies`    | Build the movies template only                       |
+| `make tvshows`   | Build the TV shows template only                     |
+| `make clean`     | Remove the `build/` directory                        |
+| `make flags`     | Download missing flag images into build directories  |
 
 ## License
 
