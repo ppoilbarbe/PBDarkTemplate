@@ -1,22 +1,21 @@
 # PB Dark Template Movies
 
-## From Dark Template
+A dark-theme tinyMediaManager template for movies, inspired by Emby.
 
-Simple template for movies inspired by Emby. It includes:
+## Features
 
-- search of title
-- simple responsive design
+- Movie list with fuzzy title search (accent- and case-insensitive)
+- Responsive dark UI with fanart banner, poster, and media info
+- Detail page: title, year, runtime, rating, genres, director, video/audio format
+- Detail page: collapsible cast section (photo, name, role; open by default)
+- Lazy image loading via `IntersectionObserver`
+- Full internationalisation: EN, FR, ES, IT, RU, ZH, VI
+  - Browser language auto-detection with fallback to English
+  - Language choice persisted in `localStorage`
+- Exportable to the same directory as PB Dark Template TV Shows without
+  filename conflict
 
-Original link broken (https://buron.coffee/files/darkTemplate),
-main site https://buron.coffee still exists but no mention of this
-template
+## Origin
 
-
-## This template
-
-This template is a fork of Dark Template (don't know source)
-
-- internationalised (EN, FR, ES) with browser language auto-detection
-- modified to be exported (by tinyMediaManager) in the same directory
-  as the export of PBDarkTemplateTVShows without file name clash.
-- added an index file to switch from movies to TV series and back.
+Forked from Dark Template (original source: https://buron.coffee/files/darkTemplate,
+link no longer active). See the root `README.md` for full acknowledgements.

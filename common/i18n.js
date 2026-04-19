@@ -17,6 +17,7 @@ const translations = {
         '--i18n-audioinfo':    '"Audio format: "',
         '--i18n-epformat':     '"Format: "',
         'cast':                'Cast',
+        'season':              'Season',
     },
     fr: {
         'nav-movies':          'Films',
@@ -34,6 +35,7 @@ const translations = {
         '--i18n-audioinfo':    '"Format audio\u00a0: "',
         '--i18n-epformat':     '"Format\u00a0: "',
         'cast':                'Acteurs',
+        'season':              'Saison',
     },
     es: {
         'nav-movies':          'Pel\u00edculas',
@@ -51,6 +53,7 @@ const translations = {
         '--i18n-audioinfo':    '"Formato de audio: "',
         '--i18n-epformat':     '"Formato: "',
         'cast':                'Reparto',
+        'season':              'Temporada',
     },
     it: {
         'nav-movies':          'Film',
@@ -68,6 +71,7 @@ const translations = {
         '--i18n-audioinfo':    '"Formato audio: "',
         '--i18n-epformat':     '"Formato: "',
         'cast':                'Cast',
+        'season':              'Stagione',
     },
     ru: {
         'nav-movies':          '\u0424\u0438\u043b\u044c\u043c\u044b',
@@ -85,6 +89,7 @@ const translations = {
         '--i18n-audioinfo':    '"\u0424\u043e\u0440\u043c\u0430\u0442 \u0430\u0443\u0434\u0438\u043e: "',
         '--i18n-epformat':     '"\u0424\u043e\u0440\u043c\u0430\u0442: "',
         'cast':                '\u0410\u043a\u0442\u0451\u0440\u044b',
+        'season':              '\u0421\u0435\u0437\u043e\u043d',
     },
     zh: {
         'nav-movies':          '\u7535\u5f71',
@@ -102,6 +107,7 @@ const translations = {
         '--i18n-audioinfo':    '"\u97f3\u9891\u683c\u5f0f: "',
         '--i18n-epformat':     '"\u683c\u5f0f: "',
         'cast':                '\u6f14\u5458',
+        'season':              '\u7b2c',
     },
     vi: {
         'nav-movies':          'Phim',
@@ -119,6 +125,7 @@ const translations = {
         '--i18n-audioinfo':    '"\u0110\u1ecbnh d\u1ea1ng \u00e2m thanh: "',
         '--i18n-epformat':     '"\u0110\u1ecbnh d\u1ea1ng: "',
         'cast':                'Di\u1ec5n vi\u00ean',
+        'season':              'M\u00f9a',
     },
 };
 
@@ -144,6 +151,11 @@ function setLanguage(lang) {
 
 function getAvailableLanguages() {
     return Object.keys(translations);
+}
+
+function t(key, lang) {
+    const dict = translations[lang || detectLanguage()] || translations.en;
+    return dict[key] || translations.en[key] || key;
 }
 
 function applyI18n(lang) {

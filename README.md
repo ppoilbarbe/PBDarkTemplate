@@ -46,6 +46,20 @@ system:
   entry in the `langFlags` map in `index.html` (flag served from
   [flagcdn.com](https://flagcdn.com)); see `CODING.md` for details
 
+### Cast display
+
+Movie and TV show detail pages include a collapsible cast section listing each
+actor's photo, name, and role. A default placeholder image is shown when no
+photo is available. The section is open by default on movie pages and closed by
+default on TV show pages.
+
+### Episode grouping by season
+
+On TV show detail pages, episodes are automatically grouped into per-season
+collapsible sections (open by default). The grouping is performed client-side
+by `tvshows_detail.js` so the flat episode list produced by tinyMediaManager
+requires no structural change.
+
 ### Title search
 
 A search bar is present on both list pages. It uses:

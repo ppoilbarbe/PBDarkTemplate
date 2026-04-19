@@ -1,5 +1,18 @@
 # CODING — Architecture and technical decisions
 
+## Versioning
+
+Versions follow a **year-sequence** scheme (`YYYY.nn`):
+- `YYYY` is the year of release
+- `nn` is a sequential counter starting at `1`, reset each new year
+
+Each version corresponds to a git tag with the exact same name (e.g. `2026.1`).
+When creating a new version:
+1. Add a `## [YYYY.nn] - YYYY-MM-DD` section at the top of `CHANGELOG.md`
+2. Create the matching git tag
+
+---
+
 ## General architecture
 
 The project produces two independent tinyMediaManager templates (movies and TV shows)

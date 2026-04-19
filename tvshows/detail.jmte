@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
     <script src="../i18n.js"></script>
+    <script src="../tvshows_detail.js"></script>
 </head>
 <body>
     <header class="media-header">

@@ -10,6 +10,30 @@ Each version header matches its corresponding git tag exactly.
 
 ---
 
+## [2026.3] - 2026-04-19
+
+### Added
+- Movie detail page: collapsible cast section (open by default) showing photo,
+  actor name and role; falls back to `nopicture.gif` when no photo is available
+- TV show detail page: collapsible cast section (closed by default)
+- TV show detail page: episodes grouped by season in collapsible sections
+  (open by default), built dynamically by `tvshows_detail.js`
+- `common/i18n.js`: keys `cast` and `season` added to all 7 languages
+- `common/i18n.js`: helper function `t(key, lang?)` for imperative translation
+  in JavaScript modules
+- `common/common_style.css`: cast section styles shared between both templates
+- `tvshows/tvshows_detail.js`: new JS module for TV show detail page behaviour
+
+### Fixed
+- Language selector: current language button now shows the flag only, without
+  the language code text
+
+### Changed
+- `movies/movies_style.css`: cast section styles removed (moved to common)
+- `CODING.md`: versioning scheme moved to the opening section
+
+---
+
 ## [2026.2] - 2026-04-19
 
 ### Added
