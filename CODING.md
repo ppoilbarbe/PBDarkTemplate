@@ -182,6 +182,92 @@ The parent replies with `detectLanguage()`, which reads from its own
 
 ---
 
+## Pre-commit hooks
+
+Static analysis runs automatically on every commit via [pre-commit](https://pre-commit.com).
+
+### Setup
+
+```bash
+pre-commit install       # install the git hook (once per clone)
+pre-commit run --all-files   # run manually on the whole tree
+```
+
+### Hooks
+
+| Hook | Tool | Scope |
+|---|---|---|
+| Trailing whitespace, EOF, merge conflicts, line endings | pre-commit-hooks | all files |
+| Shell scripts | [shellcheck](https://www.shellcheck.net) | `*.sh` |
+| Markdown | [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2) | `*.md` |
+| JavaScript | [ESLint](https://eslint.org) v9 | `*.js` |
+| CSS | [Stylelint](https://stylelint.io) v16 | `*.css` |
+| HTML | [HTMLHint](https://htmlhint.com) | `*.html` |
+| JMTE templates | `scripts/check_jmte.py` | `*.jmte` |
+
+The Node.js tools (ESLint, Stylelint, HTMLHint) are installed in isolated
+environments managed by pre-commit; no local `npm install` is required.
+`common/fuzzyset.js` is excluded from ESLint (third-party library).
+
+### `scripts/check_jmte.py`
+
+Validates block nesting in JMTE template files. It tracks `${foreach}` and
+`${if}` as openers and `${end}` as the matching closer, reporting any unclosed
+block or stray `${end}` / `${else}` tag.
+
+### Configuration files
+
+| File | Tool |
+|---|---|
+| `.pre-commit-config.yaml` | pre-commit — hook list and revisions |
+| `eslint.config.mjs` | ESLint — globals and rules |
+| `.markdownlint-cli2.yaml` | markdownlint — disabled rules |
+| `.htmlhintrc` | HTMLHint — enabled rules |
+| `.stylelintrc.json` | Stylelint — enabled rules |
+
+---
+
+## CI — GitHub Actions
+
+The single workflow `.github/workflows/ci.yml` covers linting, building, and
+releasing.
+
+### Triggers
+
+| Event | Condition |
+|---|---|
+| `push` (branch) | All branches |
+| `push` (tag) | Tags matching `[0-9][0-9][0-9][0-9].[0-9]*` only |
+| `pull_request` | All |
+
+Tags that do not match the pattern do not trigger the workflow at all.
+
+### Jobs
+
+```
+lint ──┐
+       ├── release   (tags only, needs both)
+build ─┘
+```
+
+| Job | Runs on | Condition |
+|---|---|---|
+| `lint` | every trigger | always |
+| `build` | every trigger | always |
+| `release` | tag push only | `github.ref_type == 'tag'` + lint and build passed |
+
+`lint` and `build` are independent and run in parallel.
+
+### `release` job
+
+1. Downloads the zip artifacts produced by `build` (separate runner).
+2. Extracts the changelog section for the tag via `scripts/extract_changelog.sh`.
+3. Creates the GitHub release with both zips as assets.
+
+The `contents: write` permission is scoped to this job only.
+
+---
+
 ## Relative paths to `i18n.js`
 
 After the build, `i18n.js` sits at the template root. Paths vary by page depth:

@@ -149,4 +149,3 @@ Once built, you can (choose one method):
 
 - copy the built directories in the "templates" directory of tinyMediaManager
 - unzip the zip files in the "templates" directory of tinyMediaManager
-

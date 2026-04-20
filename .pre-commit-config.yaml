@@ -1,0 +1,52 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-merge-conflict
+      - id: check-added-large-files
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1
+    hooks:
+      - id: shellcheck
+
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.22.0
+    hooks:
+      - id: markdownlint-cli2
+
+  - repo: local
+    hooks:
+      - id: eslint
+        name: Check JavaScript (ESLint)
+        entry: eslint
+        language: node
+        files: \.js$
+        additional_dependencies:
+          - eslint@9
+
+      - id: stylelint
+        name: Check CSS (Stylelint)
+        entry: stylelint
+        language: node
+        files: \.css$
+        additional_dependencies:
+          - stylelint@16
+
+      - id: htmlhint
+        name: Check HTML (HTMLHint)
+        entry: htmlhint
+        language: node
+        files: \.html$
+        additional_dependencies:
+          - htmlhint
+
+      - id: jmte-validate
+        name: Validate JMTE templates
+        entry: python3 scripts/check_jmte.py
+        language: system
+        files: \.jmte$

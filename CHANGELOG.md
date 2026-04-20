@@ -10,6 +10,30 @@ Each version header matches its corresponding git tag exactly.
 
 ---
 
+## [2026.4] - 2026-04-20
+
+### Added
+- `scripts/extract_changelog.sh`: extracts the changelog section for a given
+  version tag from `CHANGELOG.md`
+- Pre-commit hooks: ESLint (JS), Stylelint (CSS), HTMLHint (HTML),
+  markdownlint-cli2 (Markdown), shellcheck (shell), `scripts/check_jmte.py`
+  (JMTE block nesting), plus general checks (trailing whitespace, EOF,
+  line endings, merge conflicts)
+- `scripts/check_jmte.py`: validates `${foreach}`/`${if}`…`${end}` nesting
+  in JMTE template files
+- `.github/workflows/ci.yml`: unified CI workflow — lint and build run on
+  every push and pull request; release is created only on tags matching
+  `[0-9][0-9][0-9][0-9].[0-9]*` and only if both jobs pass
+- `CODING.md`: Pre-commit hooks and CI sections
+
+### Changed
+- `README.md`: updated building instructions to match `make` behaviour
+
+### Removed
+- `.github/workflows/release.yml`: replaced by `ci.yml`
+
+---
+
 ## [2026.3] - 2026-04-19
 
 ### Added
