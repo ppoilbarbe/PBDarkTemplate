@@ -10,6 +10,26 @@ Each version header matches its corresponding git tag exactly.
 
 ---
 
+## [2026.5] - 2026-05-02
+
+### Added
+
+- i18n: German (`de`) translation
+- i18n: `clearLanguage()` function — removes the stored language from
+  `localStorage` and reverts to browser detection
+- i18n: reset button (`↺`) to the right of the language selector, visible only
+  when a language preference is stored; clicking it clears the preference and
+  reapplies the browser-detected language
+
+### Fixed
+
+- i18n: `detectLanguage()` now returns `en` immediately when the browser
+  language is unknown, regardless of any stored preference; previously a stored
+  language (e.g. French) would persist even for users with an unsupported
+  browser language (e.g. German before this version)
+
+---
+
 ## [2026.4] - 2026-04-20
 
 ### Added

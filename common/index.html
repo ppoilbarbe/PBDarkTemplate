@@ -101,6 +101,24 @@
         width: auto;
         display: block;
     }
+
+    #lang-reset {
+        float: right;
+        display: none;
+        align-items: center;
+        margin: 9px 4px 9px 0;
+        padding: 4px 8px;
+        background: #ddd;
+        border: 1px solid #999;
+        color: #333;
+        font-size: 16px;
+        cursor: pointer;
+        line-height: 1;
+    }
+
+    #lang-reset:hover {
+        background: #bbb;
+    }
     </style>
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -122,6 +140,7 @@
   <div id="navbar">
     <a href="#" onclick="changeContent('movielist.html', this)" data-i18n="nav-movies">Movies</a>
     <a href="#" onclick="changeContent('tvshows.html', this)" data-i18n="nav-tvshows">TV Shows</a>
+    <div id="lang-reset" title="Reset to browser language">↺</div>
     <div id="lang-selector">
       <div id="lang-current"></div>
       <div id="lang-options"></div>
@@ -131,6 +150,7 @@
     const langFlags = {
         en: 'flag_en.png',
         fr: 'flag_fr.png',
+        de: 'flag_de.png',
         es: 'flag_es.png',
         it: 'flag_it.png',
         ru: 'flag_ru.png',
@@ -157,7 +177,12 @@
 
         const current = document.getElementById('lang-current');
         const options = document.getElementById('lang-options');
+        const reset   = document.getElementById('lang-reset');
         const iframe  = document.getElementById('mainBlock');
+
+        function updateResetButton() {
+            reset.style.display = localStorage.getItem('pb-lang') ? 'flex' : 'none';
+        }
 
         function selectLang(lang) {
             setLanguage(lang);
@@ -165,8 +190,20 @@
             current.innerHTML = '';
             current.appendChild(makeLangEntry(lang, false));
             options.style.display = 'none';
+            updateResetButton();
             iframe.contentWindow.postMessage({ type: 'pb-lang', lang: lang }, '*');
         }
+
+        reset.addEventListener('click', function(e) {
+            e.stopPropagation();
+            clearLanguage();
+            const lang = detectLanguage();
+            applyI18n(lang);
+            current.innerHTML = '';
+            current.appendChild(makeLangEntry(lang, false));
+            updateResetButton();
+            iframe.contentWindow.postMessage({ type: 'pb-lang', lang: lang }, '*');
+        });
 
         getAvailableLanguages().forEach(function(lang) {
             const item = makeLangEntry(lang);
@@ -178,6 +215,7 @@
         });
 
         current.appendChild(makeLangEntry(detectLanguage(), false));
+        updateResetButton();
 
         document.getElementById('lang-selector').addEventListener('click', function(e) {
             e.stopPropagation();

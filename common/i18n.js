@@ -109,6 +109,24 @@ const translations = {
         'cast':                '\u6f14\u5458',
         'season':              '\u7b2c',
     },
+    de: {
+        'nav-movies':          'Filme',
+        'nav-tvshows':         'Serien',
+        'movies-title':        'Filme',
+        'tvshows-title':       'Serien',
+        'search-placeholder':  'nach Titel suchen',
+        'seasons':             'Staffeln:',
+        'episodes':            'Episoden:',
+        'studio':              'Studio:',
+        '--i18n-runtime-unit': '"min"',
+        '--i18n-genres':       '"Genres: "',
+        '--i18n-director':     '"Regisseur: "',
+        '--i18n-videoinfo':    '"Videoformat: "',
+        '--i18n-audioinfo':    '"Audioformat: "',
+        '--i18n-epformat':     '"Format: "',
+        'cast':                'Besetzung',
+        'season':              'Staffel',
+    },
     vi: {
         'nav-movies':          'Phim',
         'nav-tvshows':         'Phim truy\u1ec1n h\u00ecnh',
@@ -139,14 +157,19 @@ const CSS_VARS = [
 ];
 
 function detectLanguage() {
+    const browserLang = (navigator.language || '').slice(0, 2).toLowerCase();
+    if (!translations[browserLang]) return 'en';
     const stored = localStorage.getItem(I18N_STORAGE_KEY);
     if (stored && translations[stored]) return stored;
-    const browserLang = (navigator.language || '').slice(0, 2).toLowerCase();
-    return translations[browserLang] ? browserLang : 'en';
+    return browserLang;
 }
 
 function setLanguage(lang) {
     localStorage.setItem(I18N_STORAGE_KEY, lang);
+}
+
+function clearLanguage() {
+    localStorage.removeItem(I18N_STORAGE_KEY);
 }
 
 function getAvailableLanguages() {

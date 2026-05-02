@@ -52,8 +52,9 @@ Loaded by every page. Exposes the following global functions:
 | Function | Role |
 |---|---|
 | `applyI18n(lang?)` | Applies translations to the current page |
-| `detectLanguage()` | Returns the active language (localStorage > browser > `en`) |
+| `detectLanguage()` | Returns the active language (browser → `en` if unknown; otherwise localStorage → browser) |
 | `setLanguage(lang)` | Saves the language to `localStorage` |
+| `clearLanguage()` | Removes the stored language from `localStorage` (revert to browser detection) |
 | `getAvailableLanguages()` | Returns the list of defined languages |
 
 **Adding a language**: two files to update.
@@ -171,13 +172,21 @@ window.addEventListener('message', function(e) {
 The parent replies with `detectLanguage()`, which reads from its own
 `localStorage` — reliable because it runs in the top-level page.
 
+### Reset button
+
+A `↺` button is displayed to the right of the language selector, but only
+when a language is stored in `localStorage`. Clicking it calls `clearLanguage()`
+and re-applies the browser-detected language. The button hides itself once the
+preference is cleared.
+
 ### Summary of communication flows
 
 | Trigger | Mechanism |
 |---|---|
 | User selects a language in the nav bar | `postMessage` `pb-lang` → current iframe |
+| User clicks the reset button | `clearLanguage()` + `postMessage` `pb-lang` → current iframe |
 | Navigation to a new page inside the iframe | `pb-lang-request` → parent → `pb-lang` |
-| Initial load / fallback | `detectLanguage()`: localStorage then browser language |
+| Initial load / fallback | `detectLanguage()`: browser language (unknown → `en`), then localStorage |
 | Multiple tabs | `storage` event (supplementary, not reliable on its own) |
 
 ---
