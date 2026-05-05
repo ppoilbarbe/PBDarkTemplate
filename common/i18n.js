@@ -2,6 +2,7 @@ const I18N_STORAGE_KEY = 'pb-lang';
 
 const translations = {
     en: {
+        'page-title':          'Movies & TV Shows',
         'nav-movies':          'Movies',
         'nav-tvshows':         'TV Shows',
         'movies-title':        'Movies',
@@ -20,6 +21,7 @@ const translations = {
         'season':              'Season',
     },
     fr: {
+        'page-title':          'Liste des films et séries TV',
         'nav-movies':          'Films',
         'nav-tvshows':         'S\u00e9ries',
         'movies-title':        'Films',
@@ -38,6 +40,7 @@ const translations = {
         'season':              'Saison',
     },
     es: {
+        'page-title':          'Pel\u00edculas y series de TV',
         'nav-movies':          'Pel\u00edculas',
         'nav-tvshows':         'Series',
         'movies-title':        'Pel\u00edculas',
@@ -56,6 +59,7 @@ const translations = {
         'season':              'Temporada',
     },
     it: {
+        'page-title':          'Film e serie TV',
         'nav-movies':          'Film',
         'nav-tvshows':         'Serie TV',
         'movies-title':        'Film',
@@ -74,6 +78,7 @@ const translations = {
         'season':              'Stagione',
     },
     ru: {
+        'page-title':          '\u0424\u0438\u043b\u044c\u043c\u044b \u0438 \u0441\u0435\u0440\u0438\u0430\u043b\u044b',
         'nav-movies':          '\u0424\u0438\u043b\u044c\u043c\u044b',
         'nav-tvshows':         'C\u0435\u0440\u0438\u0430\u043b\u044b',
         'movies-title':        '\u0424\u0438\u043b\u044c\u043c\u044b',
@@ -92,6 +97,7 @@ const translations = {
         'season':              '\u0421\u0435\u0437\u043e\u043d',
     },
     zh: {
+        'page-title':          '\u7535\u5f71\u548c\u7535\u89c6\u8282\u76ee',
         'nav-movies':          '\u7535\u5f71',
         'nav-tvshows':         '\u5267\u96c6',
         'movies-title':        '\u7535\u5f71',
@@ -110,6 +116,7 @@ const translations = {
         'season':              '\u7b2c',
     },
     de: {
+        'page-title':          'Filme und Serien',
         'nav-movies':          'Filme',
         'nav-tvshows':         'Serien',
         'movies-title':        'Filme',
@@ -128,6 +135,7 @@ const translations = {
         'season':              'Staffel',
     },
     vi: {
+        'page-title':          'Phim và phim truyền hình',
         'nav-movies':          'Phim',
         'nav-tvshows':         'Phim truy\u1ec1n h\u00ecnh',
         'movies-title':        'Phim',
@@ -188,6 +196,8 @@ function applyI18n(lang) {
     CSS_VARS.forEach(v => {
         if (dict[v]) document.documentElement.style.setProperty(v, dict[v]);
     });
+
+    if (dict['page-title']) document.title = dict['page-title'];
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');

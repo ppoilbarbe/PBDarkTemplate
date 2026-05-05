@@ -2,11 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
 Versions follow a **year-sequence** scheme (`YYYY.nn`), not semver:
 - `YYYY` is the year of release
 - `nn` is a sequential counter starting at `1`, reset each new year
 
 Each version header matches its corresponding git tag exactly.
+
+---
+
+## [2026.6] - 2026-05-05
+
+### Added
+
+- i18n: `page-title` translation key for all 8 languages — the browser tab
+  title now updates when the user changes the language
+- i18n: `applyI18n()` now sets `document.title` from the `page-title` key
+
+### Changed
+
+- `index.html`: default `<title>` is now `Movies & TV Shows` (English neutral)
+  instead of the French string
+- `movies/template.conf`, `tvshows/template.conf`: language list sorted
+  alphabetically (DE, EN, ES, FR, IT, RU, VI, ZH)
 
 ---
 
